@@ -5,6 +5,10 @@
 select *
 from actor;
 
+select * from customer;
+
+select * from payment;
+
 -- select <columns>
 -- from <table>;
 
@@ -211,3 +215,16 @@ where customer_id = 1 or customer_id = 6;
 -- Mary Smith and Jennifer Davis are our two best customers
 
 -- This afternoon we'll start looking at how we could combine those two queries into a single query
+select customer.customer_id, payment_id, amount, first_name, last_name
+from customer
+join payment
+on customer.customer_id = payment.customer_id;
+
+select customer.customer_id, payment_id, first_name, last_name
+from customer
+full join payment
+on customer.customer_id = payment.customer_id
+where payment_id is null;
+-- i can tell with this join that no customer has made zero payments
+
+select * from payment;
